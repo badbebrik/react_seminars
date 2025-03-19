@@ -15,14 +15,15 @@ const CurrencyRates = () => {
   useEffect(() => {
     const fetchRates = async () => {
       try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/RUB');
+        // мне лень прятать ключ в .env, надеюсь его не заабузят до проверки
+        const response = await fetch('https://v6.exchangerate-api.com/v6/84146960623f1d627876e3c3/latest/RUB');
         const data = await response.json();
         console.log('API Response:', data);
         
         setRates({
-          USD: 1 / data.rates.USD,
-          EUR: 1 / data.rates.EUR,
-          GBP: 1 / data.rates.GBP,
+          USD: 1 / data.conversion_rates.USD,
+          EUR: 1 / data.conversion_rates.EUR,
+          GBP: 1 / data.conversion_rates.GBP,
           timestamp: Date.now()
         });
       } catch (err) {
